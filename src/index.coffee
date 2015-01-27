@@ -33,8 +33,8 @@ module.exports = class MessageFormatCompiler
     key = this._stripJsonExtension(paths.join '/')
 
     compileMessage = (memo, value, index) ->
-      messageFunction = messageFormat.precompile(messageFormat.parse(value));
-      return memo + "window.i18n['" + key + "']['" + index + "'] = " + messageFunction + ";\n"
+      messageFunction = messageFormat.precompile(messageFormat.parse(value))
+      return memo + "exports['#{index}'] = #{messageFunction};\n"
 
     try
       messages = JSON.parse(data)
